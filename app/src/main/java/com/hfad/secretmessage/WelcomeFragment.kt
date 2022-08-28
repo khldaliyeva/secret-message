@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 
 class WelcomeFragment : Fragment() {
 
@@ -12,6 +14,13 @@ class WelcomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_welcome, container, false)
+        val view = inflater.inflate(R.layout.fragment_welcome, container, false)
+        val btnStart = view.findViewById<Button>(R.id.btnStart)
+
+        btnStart.setOnClickListener {
+            view.findNavController().navigate(R.id.action_welcomeFragment_to_messageFragment)
+        }
+
+        return view
     }
 }
